@@ -60,7 +60,7 @@ Route::get('addUser',function (){
 
 Route::get('ControllerMessage','testController@printMessage');
 Route::post('store','testController@storeData');
-Route::get('display','testController@display')->middleware('test');
+Route::get('display','testController@display')->middleware('auth');
 Route::get('delete/{id}','testController@deleteStudent');
 Route::get('show/{id}','testController@show');
 Route::post('edit','testController@editdata');
