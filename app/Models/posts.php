@@ -8,20 +8,21 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class student extends Authenticatable
+class posts extends model
 {
     use HasFactory;
 
-    protected  $table   = "students";
+    protected  $table   = "posts";
 
-    protected  $fillable = ["name","email","password"];
+    protected  $fillable = ["title","user_id"];
 
-    protected  $hidden   = ["updated_at","password","remember_token","created_at"];
 
 
 
     // protected $hidden = ["name"];      
 
-
+    public function userdata(){
+        return  $this->belongsTo('App\Models\User','user_id','id');
+      }  
 
 }

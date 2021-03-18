@@ -13,9 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('lang/{lang}',function ($lang){
+
+       if($lang == 'ar'){
+           session()->put('lang','ar');
+       }else{
+        session()->put('lang','en');
+       }
+
+       return back();
+});
+
+
+
 Route::get('/', function () {
     return view('welcome');
-});   
+});
 
 
 Route::get('Message',function (){
@@ -59,11 +73,36 @@ Route::get('addUser',function (){
 });
 
 Route::get('ControllerMessage','testController@printMessage');
-Route::post('store','testController@storeData');
 Route::get('display','testController@display')->middleware('auth');
 Route::get('delete/{id}','testController@deleteStudent');
 Route::get('show/{id}','testController@show');
 Route::post('edit','testController@editdata');
+
+
+
+
+
+Route::get('studentSignUp','testController@signup');
+Route::post('storeStudent','testController@storeData');
+
+Route::get('studentLogin','testController@signIn');
+Route::post('dologinStudent','testController@login');
+
+Route::get('logoutStudent','testController@logout');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -74,7 +113,10 @@ Route::resource('user','userController');
 // user  >>> dislay index .    (get)
 // user/create  >>> call create function 
 // user  >>> store .    (post)
-
+// user/{id}/edit   >> show single data 
+// user/id   >>> edit
+// user/destroy   >>> delete 
+ 
 
 
 //  Route::get('signIn',function (){
@@ -91,6 +133,22 @@ Route::resource('user','userController');
 
 
 
+
+ Route::get('stdData',function (){
+     return view('studentData');
+ })->middleware('student');
+
+
+
+
+
+
+
+// Route::middleware(['lang'])->group(function (){
+   
+
+
+// });
 
 
 

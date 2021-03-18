@@ -36,19 +36,19 @@
 
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
+                <label for="exampleInputEmail1">{{trans('site.name')}}</label>
                 <input type="text" name="name" value="{{old('name')}}" class="form-control" id="exampleInputName"
                     aria-describedby="" placeholder="Enter Name">
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="exampleInputEmail1">{{trans('site.email')}}</label>
                 <input type="email" name="email" value="{{old('email')}}" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp" placeholder="Enter email">
             </div>
 
             <div class="form-group">
-                <label for="exampleInputPassword1">New Password</label>
+                <label for="exampleInputPassword1">{{trans('site.password')}}</label>
                 <input type="password" name="password" class="form-control" id="exampleInputPassword1"
                     placeholder="Password">
             </div>

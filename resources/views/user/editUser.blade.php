@@ -29,7 +29,11 @@
 
     <div class="container">
         <h2>edit student</h2>
-        <form action="{{ url('/edit') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ url('/user/'.$studentData->id) }}" method="post" enctype="multipart/form-data">
+
+
+          <input type="hidden" name="_method" value="put"> 
+          {{-- <input type="hidden" name="_method" value="delete">  --}}
 
       
             <input type="hidden" name="_token" value="{{csrf_token()}}">

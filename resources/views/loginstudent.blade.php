@@ -28,25 +28,24 @@
 
 
     <div class="container">
-        <h2>edit student</h2>
-        <form action="{{ url('/edit') }}" method="post" enctype="multipart/form-data">
+        <h2>login student </h2>
+        <form action="{{ url('/dologinStudent') }}" method="post" enctype="multipart/form-data">
 
-      
+
             <input type="hidden" name="_token" value="{{csrf_token()}}">
-            <input type="hidden" name="id" value="{{$studentData->id}}">
-
-
-            <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
-                <input type="text" name="name" value="{{$studentData->name}}" class="form-control" id="exampleInputName"
-                    aria-describedby="" placeholder="Enter Name">
-            </div>
 
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" name="email" value="{{$studentData->email}}" class="form-control" id="exampleInputEmail1"
+                <input type="email" name="email" value="{{old('email')}}" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp" placeholder="Enter email">
             </div>
+
+            <div class="form-group">
+                <label for="exampleInputPassword1">New Password</label>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1"
+                    placeholder="Password">
+            </div>
+
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

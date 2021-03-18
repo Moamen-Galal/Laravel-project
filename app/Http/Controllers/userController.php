@@ -17,8 +17,12 @@ class userController extends Controller
     {
         //
 
-      echo 'hi from resource controller . . .';
+    $data =  User::with('userPost')->get()->toArray();        //all()
+      // paginate()
 
+
+
+      return view('user.display',['data' => $data]);
 
     }
 
@@ -50,7 +54,14 @@ class userController extends Controller
             'email'    => 'required|email',
             'password' => 'required|min:5',
          ]
-      );
+      ,[],[
+
+           'name' => trans('site.name'),
+           'password' => trans('site.password2'),
+           'email' => trans('site.email'),
+           
+
+      ]);
 
     $data['password']  = bcrypt($data['password']);
 
@@ -59,15 +70,22 @@ class userController extends Controller
     $message = '';
   if($op){
 
-             echo 'register done';
-        //     $message = "your data inserted";
+            
+         $message = "your data inserted";
      }else{
-            // $message ='try again';
-         echo 'error try again';
+         $message ='try again';
+        // echo 'error try again';
         }
 
-       ///return view('add',['message' => $message]);
+      //return view('add',['message' => $message]);
 
+
+     // session()->put('message',$message);
+
+      session()->flash('message',$message);
+
+      return redirect('/display');
+       
     }
 
     /**
@@ -90,6 +108,13 @@ class userController extends Controller
     public function edit($id)
     {
         //
+
+       $data = User::find($id);
+
+       return view('user.editUser',['studentData' => $data]);
+
+
+
     }
 
     /**
@@ -101,7 +126,27 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    
+        $data =   $this->validate(request(),
+        [
+            'name'     => 'required|min:5|max:50', 
+            'email'    => 'required|email'         ]
+      ,[],[
+
+           'name' => trans('site.name'),
+           'email' => trans('site.email'),
+           
+
+      ]);
+
+
+      $op = User::where('id',$id)->update(['name' => $request->name , 'email' => $request->email ]);
+
+if($op){
+    return back();
+}
+
+
     }
 
     /**

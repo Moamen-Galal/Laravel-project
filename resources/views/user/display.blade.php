@@ -59,7 +59,7 @@
     <br>
 
 
-    {{trans('site.nti')}}  
+    {{trans('site.nti')}}   
 
         <!-- PHP code to read records will be here -->
 
@@ -79,13 +79,16 @@
 
  @foreach ($data as $row)
        
+    {{-- {{dd($row['user_post'])}} --}}
+
+
 <tr>    
            <td>{{$row['id']}}</td>
            <td>{{$row['name']}}</td>
            <td>{{$row['email']}}</td>
            <td>{{$row['created_at']}}</td>
            <td><a href="{{url('/delete/'.$row['id'])}}">delete Item</a> ||
-           <a href="{{url('/show/'.$row['id'])}}">show</a></td> 
+           <a href="{{url('/user/'.$row['id'].'/edit')}}">show</a></td> 
        </tr>   
  @endforeach
 

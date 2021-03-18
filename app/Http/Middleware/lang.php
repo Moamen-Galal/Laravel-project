@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
-
-class student
+use Illuminate\Support\Facades\app;
+class lang
 {
     /**
      * Handle an incoming request.
@@ -14,18 +13,13 @@ class student
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
-        //return $next($request);
-
-
-       if(auth()->guard('student')->check()){
+      if (session()->has('lang')) {
+			app()->setLocale(session()->get('lang'));
+		} else {
+			app()->setLocale('ar');
+		}
         return $next($request);
-       }else{
-           dd('no student');
-       }
-
-
-
     }
 }
